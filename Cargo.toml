@@ -1,0 +1,10 @@
+[package]
+name = "face-messaging"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+num-complex = { version = "0.4.6", default-features = false, features = ["libm", "serde"] }
+postcard = { version = "1.1.1", features = ["alloc"] }
+serde = { version = "1.0.217", default-features = false, features = ["alloc", "derive"] }
+

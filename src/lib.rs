@@ -38,10 +38,10 @@ pub enum Response {
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Debug)]
 pub struct Job {
-    id: JobId,
-    duration: Duration,
-    num_repeats: u32,
-    events: Vec<Event>,
+    pub id: JobId,
+    pub duration: Duration,
+    pub num_repeats: u32,
+    pub events: Vec<Event>,
 }
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Debug)]
@@ -52,41 +52,41 @@ pub enum Event {
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Debug)]
 pub struct TxEvent {
-    start: Duration,
-    duration: Duration,
-    tx_data_id: TxDataId,
-    steering_vec: SteeringVec,
+    pub start: Duration,
+    pub duration: Duration,
+    pub tx_data_id: TxDataId,
+    pub steering_vec: SteeringVec,
 }
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Debug)]
 pub struct RxEvent {
-    start: Duration,
-    duration: Duration,
-    steering_vecs: Vec<SteeringVec>,
+    pub start: Duration,
+    pub duration: Duration,
+    pub steering_vecs: Vec<SteeringVec>,
 }
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Debug)]
 pub struct SteeringVec {
-    id: BeamId,
-    coefficients: [Complex64; NUM_ELEMENTS],
+    pub id: BeamId,
+    pub coefficients: [Complex64; NUM_ELEMENTS],
 }
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]
 pub struct JobResults {
-    id: JobId,
-    rx_data: Vec<RxData>,
+    pub id: JobId,
+    pub rx_data: Vec<RxData>,
 }
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]
 pub struct RxData {
-    id: EventId,
-    beams: Vec<Beam>,
+    pub id: EventId,
+    pub beams: Vec<Beam>,
 }
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]
 pub struct Beam {
-    id: BeamId,
-    data: Vec<u32>,
+    pub id: BeamId,
+    pub data: Vec<u32>,
 }
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]
@@ -94,8 +94,8 @@ pub struct StateCommand {}
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]
 pub struct TxData {
-    id: TxDataId,
-    audio_data: Vec<u32>,
+    pub id: TxDataId,
+    pub audio_data: Vec<u32>,
 }
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]
@@ -109,7 +109,7 @@ pub struct ConfigResponse {}
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]
 pub struct ParseError {
-    msg: String,
+    pub msg: String,
 }
 
 #[cfg(test)]

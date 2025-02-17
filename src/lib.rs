@@ -4,7 +4,7 @@
 #[macro_use]
 extern crate alloc;
 
-use alloc::vec::Vec;
+use alloc::{string::String, vec::Vec};
 use core::time::Duration;
 use num_complex::Complex64;
 use serde::{Deserialize, Serialize};
@@ -31,8 +31,9 @@ pub enum Command {
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]
 pub enum Response {
-    JobResults,
-    ConfigResponse,
+    JobResults(JobResults),
+    ConfigResponse(ConfigResponse),
+    ParseError(ParseError),
 }
 
 #[derive(Clone, Serialize, Deserialize, PartialEq, Debug)]
@@ -106,12 +107,17 @@ pub struct ConfigCommand {}
 #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]
 pub struct ConfigResponse {}
 
+#[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]
+pub struct ParseError {
+    msg: String,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+    use core::fmt::Debug;
     use postcard::{from_bytes, to_allocvec};
     use serde::{Deserialize, Serialize};
-    use core::fmt::Debug;
 
     fn check_serialization<T: Serialize + for<'a> Deserialize<'a> + PartialEq + Debug>(t: &T) {
         let serialized = to_allocvec(t).unwrap();
